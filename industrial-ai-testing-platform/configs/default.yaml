@@ -1,0 +1,35 @@
+project:
+  name: industrial-ai-testing-platform
+  seed: 42
+
+runtime:
+  device: auto
+  max_sample_inferences: 950
+  max_runtime_seconds: 300
+  num_workers: 4
+
+model:
+  name: resnet18
+  pretrained: true
+
+data:
+  source_domain: cifar10
+  target_domain: stl10
+  image_size: 224
+
+transfer:
+  enabled: true
+  metrics:
+    - confidence
+    - entropy
+    - consistency
+
+robustness:
+  enabled: true
+  attacks:
+    - fgsm
+    - pgd
+
+report:
+  format: html
+  output_dir: outputs
